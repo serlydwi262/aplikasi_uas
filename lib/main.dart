@@ -572,6 +572,54 @@ class _WordGamePageState extends State<WordGamePage> {
     );
   }
 }
+
+// ---WIDGET PERAYAAN ---
+class FloatingBalloons extends StatefulWidget {
+  const FloatingBalloons({super.key});
+  @override
+  State<FloatingBalloons> createState() => _FloatingBalloonsState();
+}
+
+class _FloatingBalloonsState extends State<FloatingBalloons> with SingleTickerProviderStateMixin {
+  late AnimationController _ctrl;
+  final Random _random = Random();
+  late List<Map<String, dynamic>> _items;
+
+  @override
+  void initState() {
+    super.initState();
+    _ctrl = AnimationController(vsync: this, duration: const Duration(seconds: 3));
+    _items = List.generate(20, (index) => {
+      "x": _random.nextDouble(),
+      "color": Colors.primaries[_random.nextInt(Colors.primaries.length)],
+      "size": _random.nextDouble() * 30 + 20,
+      "delay": _random.nextDouble() * 2,
+    });
+    _ctrl.forward();
+  }
+
+  @override
+  void dispace() { _ctrl.dispose(); super.dispose();}
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _ctrl,
+      builder: (context, child) {
+        return Stack(
+          children: _items.map((item) {
+            double progress = (_ctrl.value - item["delay"]).clamp(0.0, 1.0);
+            return Positioned(
+              left: MediaQuery.of(context).size.width * item["x"],
+              top: MediaQuery.of(context).size.height * (1.2 - (progress * 1.4)),
+              child: const Text("🎈", style: TextStyle(fontSize: 40, decoration: TextDecoration.none)),
+            ); 
+          }).toList(),
+        );
+      },
+    );
+  }
+}
   
 
                     
