@@ -357,6 +357,221 @@ class _CategoryPageState extends State<CategoryPage> with SingleTickerProviderSt
     );
   }
 } 
+
+// --- LAYAR 3: TEMPAT BERMAIN ---
+class WordGamePage extends StatefulWidget {
+  final String category;
+  const WordGamePage({super.key, required this.category});
+
+  @override
+  State<WordGamePage> createState() => _WordGamePageState();
+}
+
+class _WordGamePageState extends State<WordGamePage> {
+  late List<Map<String, String>> _activeWords;
+  int _currentIndex = 0;
+  int _score = 0;
+  final TextEditingController _controller = TextEditingController();
+  String _message = "";
+  bool _isCorrect = false;
+
+  final Map<String, List<Map<String>>> _allData = {
+    "BUAH": [
+      {"word": "APEL", "hint": "Buah merah, manis, dan renyah", "icon": "🍎"},
+      {"word": "JERUK", "hint": "Bentuknya bulat, rasanya segar", "icon": "🍊"},
+      {"word": "ANGGUR", "hint": "Bulat kecil-kecil,ada ungu atau hijau", "icon": "🍇"},
+      {"word": "MELON", "hint": "Besar, hijau, dalamnya manis segar", "icon": "🍈"},
+      {"word": "CERI", "hint": "kecil, merah, sering ada di atas kue", "icon": "🍒"},
+    ],
+    "SAYUR": [
+      {"word": "WORTEL", "hint": "Orange, sehst untuk mata", "icon": "🥕"},
+      {"word": "BROKOLI", "hint": "Bentuknya seperti pohon kecil hijau", "icon": "🥦"},
+      {"word": "TERONG", "hint": "Panjang dan berwarna ungu", "icon": "🍆"},
+      {"word": "JAGUNG", "hint": "Biji kuninhg, enak dibakar", "icon": "🌽"},
+      {"word": "Jamur", "hint": "Tumbuh di tempat lembab", "icon": "🍄"},
+    ],
+    "IKAN": [
+      {"word": "PAUS", "hint": "Ikan paling besar di laut", "icon": "🐋"},
+      {"word": "CUMI", "hint": "Punya tinta hitam", "icon": "🦑"},
+      {"word": "UDANG", "hint": "Badannya bungkuk, enak dimakan", "icon": "🦐"},
+      {"word": "KEPITING", "hint": "Jalannya miring, punya capit", "icon": "🦀"},
+      {"word": "Kerang", "hint": "Punya rumah cangkang yang keras", "icon": "🐚"},
+    ],
+    "PROFESI": [
+      {"word": "GURU", "hint": "Orang yang mengajar di sekolah", "icon": "🧑‍🏫"},
+      {"word": "DOKTER", "hint": "Orang yang mengobati orang sakit", "icon": "🧑‍⚕️"},
+      {"word": "POLISI", "hint": "Menjaga keamanan jalan raya", "icon": "👮"},
+      {"word": "PILOT", "hint": "Orang yang mengendarain pesawat", "icon": "👨‍✈️"},
+      {"word": "KOKI", "hint": "Ahli memasak di restoran", "icon": "🧑‍🍳"},
+    ],
+    "BENDA": [
+      {"word": "BUKU", "hint": "Benda yang dibaca untuk mencari ilmu", "icon": "📚"},
+      {"word": "BOLA", "hint": "Benda bulat yang bisa ditendang", "icon": "⚽"},
+      {"word": "LAMPU", "hint": "Memberikan cahaya saat gelap", "icon": "💡"},
+      {"word": "JAM", "hint": "Benda untuk melihat waktu", "icon": "⏰"},
+      {"word": "PAYUNG", "hint": "Melindungi kita dari hujan", "icon": "☂️"},
+    ],
+    "HEWAN": [
+      {"word": "SINGA", "hint": "Raja hutan yang mengaum", "icon": "🦁"},
+      {"word": "JERAPAH", "hint": "Lehernya sangat panjang", "icon": "🦒"},
+      {"word": "KELINCI", "hint": "Suka makan worter dan melompat", "icon": "🐰"},
+      {"word": "MONYET", "hint": "Suka makan pisang dan memanjat pohon", "icon": "🐒"},
+      {"word": "AYAM", "hint": "Membangunkan orang di pagi hari", "icon": "🚌"},
+    ],
+    "KENDARAAN": [
+      {"word": "ROKET", "hint": "Pergi keluar angkasa", "icon": "🚀"},
+      {"word": "MOBIL", "hint": "Punya empat roda di jalan raya", "icon": "🚗"},
+      {"word": "PESAWAT", "hint": "Bisa terbang tinggi di awan", "icon": "✈️"},
+      {"word": "KAPAL", "hint": "Kendaraan besar di atas laut", "icon": "🚢"},
+      {"word": "BUS", "hint": "Mobil sangat besar untuk banyak orang", "icon": "🚌"},
+    ],
+    "WARNA": [
+      {"word": "MERAH", "hint": "Warna buah apel dan melambangkan berani", "icon": "🔴"},
+      {"word": "BIRU", "hint": "Warna langit yang cerah dan warna laut yang luas", "icon": "🔵"},
+      {"word": "HIJAU", "hint": "Warna daun pohon dan rumput di taman", "icon": "🟢"},
+      {"word": "HITAM", "hint": "Warna malam hari tanpa lampu atau warna arang", "icon": "⚫"},
+      {"word": "COKELAT", "hint": "Warna kayu pohon dan manisnya cokelat batang", "icon": "🟤"},
+    ],
+  };
+
+  @override
+  void initState() {
+    super.initState();
+    _activeWords = List.from(_allData[widget.category] ?? _allData["BUAH"]!);
+    _activeWords.shuffle();
+  }
+
+  void _showBalloons() {
+    overlayState? overlayState = overlay.of(context);
+    overlayEntry overlayEntry = overlayEntry(builder: (context) => const FloatingBalloons());
+    overlayState.insert(overlayEntry);
+    Future.delayed(const Duration(secods: 2), () => overlayEntry.remove()),
+  }
+
+  void _onTextChanged(String value) {
+    String userAnswer = value.toUpperCase().trim();
+    String correctAnswer = _activeWords[_currentIndex]["word"]!;
+
+    if (userAnswer == correctAnswer) {
+      setState(() {
+        _isCorrect = true;
+        _score += 20;
+        _message = "BENAR SEKALI! 🎉";
+      });
+      _showBalloons();
+      Future.delayed(const Duration(milliseconds: 1500), () {
+        if (_currentIndex < _activeWords.length -1) {
+          setState(() {
+            _currentIndex++;
+            _controller.clear();
+            _message = "";
+            _isCorrect = false;
+          });
+        } else {
+          _showGameOver();
+        }
+      });
+    }
+  }
+
+  // --- PERBAIKAN DI SINI ---
+  void _showGameOver() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+        title: const Text("Hebat! Selesai! 🎉", textAlign: TextAlign.center),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(Icons.emoji_events, size: 80, color: Colors.orange),
+            Text("Skor Akhir: $_score", style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+          ],
+        ),
+        actions: [
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+                // Permata, tutup dialog (AlertDialog)
+                Navigator.pop(context);
+                // Kedua, Keluar dari WordGamePage Kembali Ke CategoryPage
+                Navigator.pop(context);
+              },
+              child: const Text("KEMBALI KE PILIH KATEGORI"),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    var data = _activeWords[_currentIndex];
+    List<String> letters = data["word"]!.split('');
+    letters.shuffle(Random(_currentIndex));
+    String displayDisplay =_isCorrect ? data["word"]!.split('').join(' ') : letters.join(' ');
+
+    return Scaffold(
+      backgroundColor: const Color(0xFFF1F8E9),
+      body: Stack(
+        children: [
+          ClipPath(
+            clipper: HeaderClipper(),
+            child: Container(
+              height: 280,
+              decoration: const BoxDecoration(gradient: LinearGradient(colors: [Colors.green, Colors.lightGreen])),
+            ),
+          ),
+          SafeArea(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(onPressed: () => Navigator.pop(context), icon: const Icon(Icons.arrow_back_ios, color: Colors.white)),
+                      Text("Skor: $_score", style: const TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Text("TEBAK ${widget.category}", style: const TextStyle(fontSize: 24, color: Colors.white, fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 30),
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(30),
+                    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(40)),
+                    child: Column(
+                      children: [
+                        Text(data["icon"]!, style: const TextStyle(fontSize: 100)),
+                        const SizedBox(height: 20),
+                        Text(displayDisplay, style: const TextStyle(fontSize: 38, fontWeight: FontWeight.bold, color: Colors.orangeAccent, letterSpacing: 4)),
+                        const SizedBox(height: 15),
+                        Text("💡 ${data["hint"]}", textAlign: TextAlign.center style: TextStyle(fontStyle: FontStyle.italic, color: Colors.grey[600])),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 40),
+                  TextField(
+                    controller: _controller,
+                    onChanged: _onTextChanged,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.green),
+                    decoration: InputDecoration(hintText: "KETIK DISINI...", border: OutlineInputBorder(borderRadius: BorderRadius.circular(20))),
+                  ),
+                  const SizedBox(height: 20),
+                  Text(_message, style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: _isCorrect ? Colors.green : Colors.red)),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
   
 
                     
