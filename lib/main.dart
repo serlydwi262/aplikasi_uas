@@ -445,7 +445,7 @@ class _WordGamePageState extends State<WordGamePage> {
     overlayState? overlayState = overlay.of(context);
     overlayEntry overlayEntry = overlayEntry(builder: (context) => const FloatingBalloons());
     overlayState.insert(overlayEntry);
-    Future.delayed(const Duration(secods: 2), () => overlayEntry.remove()),
+    Future.delayed(const Duration(seconds: 2), () => overlayEntry.remove()),
   }
 
   void _onTextChanged(String value) {
@@ -474,7 +474,7 @@ class _WordGamePageState extends State<WordGamePage> {
     }
   }
 
-  // --- PERBAIKAN DI SINI ---
+  
   void _showGameOver() {
     showDialog(
       context: context,
@@ -493,9 +493,9 @@ class _WordGamePageState extends State<WordGamePage> {
           Center(
             child: ElevatedButton(
               onPressed: () {
-                // Permata, tutup dialog (AlertDialog)
+                
                 Navigator.pop(context);
-                // Kedua, Keluar dari WordGamePage Kembali Ke CategoryPage
+                
                 Navigator.pop(context);
               },
               child: const Text("KEMBALI KE PILIH KATEGORI"),
@@ -619,6 +619,56 @@ class _FloatingBalloonsState extends State<FloatingBalloons> with SingleTickerPr
       },
     );
   }
+}
+
+
+class WaveClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    var path = Path();
+    path.lineTo(0, size.height - 40);
+    var firstControlPoint = Offset(size.width / 4, size.height);
+    var firstEndPoint = Offset(size.width/ 2.25, size.height - 30);
+    path.quadraticBezierTo(firstControlPoint.dx, firsControlPoint.dy, firstEndPoint.dx, firsEndPoint.dy);
+    var secondControlPoint = Offset(size.width - (size.width / 3.25), size.height - 65);
+    var secondEndPoint = Offset(size.width, size.height - 40);
+    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy, secondEndPoint.dx, secondEndPoint.dy);
+    path.lineTo(size.width, 0);
+    path.close();
+    return path;
+  }
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+}
+
+class HeaderClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    var path = Path();
+    path.lineTo(0, size.height -80);
+    path.lineTo(size.width / 2, size.height, size.width, size.height - 80);
+    path.lineTo(size.width, 0);
+    path.close();
+    return path;
+  }
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+}
+
+class BottomWaveClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    var path = Path();
+    path.moveTo(0, 50);
+    path.quadraticBezierTo(size.width / 4, 0, size.width / 2, 50);
+    path.quadraticBezierTo(size.width * 3 / 4, 100, size.width, 50);
+    path.lineTo(size.width, size.height);
+    path.lineTo(0, size.height);
+    path.close();
+    return path;
+  }
+  @override
+  bool ahouldReclip(CustomClipper<Path> oldClipper) => false;
 }
   
 
