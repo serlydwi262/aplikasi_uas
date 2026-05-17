@@ -146,7 +146,7 @@ class _MainMenuPageState extends State<MainMenuPage> with TickerProviderStateMix
                       decoration: BoxDecoration(
                         gradient: const LinearGradient(
                           colors: [Colors.white, Color(0xFFF1F8E9)],
-                          begin: Alignment..topLeft,
+                          begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                         ),
                         borderRadius: BorderRadius.circular(50),
@@ -375,7 +375,7 @@ class _WordGamePageState extends State<WordGamePage> {
   String _message = "";
   bool _isCorrect = false;
 
-  final Map<String, List<Map<String>>> _allData = {
+  final Map<String, List<Map<String, String>>> _allData = {
     "BUAH": [
       {"word": "APEL", "hint": "Buah merah, manis, dan renyah", "icon": "🍎"},
       {"word": "JERUK", "hint": "Bentuknya bulat, rasanya segar", "icon": "🍊"},
@@ -442,10 +442,10 @@ class _WordGamePageState extends State<WordGamePage> {
   }
 
   void _showBalloons() {
-    overlayState? overlayState = overlay.of(context);
-    overlayEntry overlayEntry = overlayEntry(builder: (context) => const FloatingBalloons());
+    OverlayState? overlayState = Overlay.of(context);
+    OverlayEntry overlayEntry = OverlayEntry(builder: (context) => const FloatingBalloons());
     overlayState.insert(overlayEntry);
-    Future.delayed(const Duration(seconds: 2), () => overlayEntry.remove()),
+    Future.delayed(const Duration(seconds: 2), () => overlayEntry.remove());
   }
 
   void _onTextChanged(String value) {
@@ -549,7 +549,7 @@ class _WordGamePageState extends State<WordGamePage> {
                         const SizedBox(height: 20),
                         Text(displayDisplay, style: const TextStyle(fontSize: 38, fontWeight: FontWeight.bold, color: Colors.orangeAccent, letterSpacing: 4)),
                         const SizedBox(height: 15),
-                        Text("💡 ${data["hint"]}", textAlign: TextAlign.center style: TextStyle(fontStyle: FontStyle.italic, color: Colors.grey[600])),
+                        Text("💡 ${data["hint"]}", textAlign: TextAlign.center, style: TextStyle(fontStyle: FontStyle.italic, color: Colors.grey[600])),
                       ],
                     ),
                   ),
@@ -599,7 +599,7 @@ class _FloatingBalloonsState extends State<FloatingBalloons> with SingleTickerPr
   }
 
   @override
-  void dispace() { _ctrl.dispose(); super.dispose();}
+  void dispose() { _ctrl.dispose(); super.dispose();}
 
   @override
   Widget build(BuildContext context) {
@@ -629,7 +629,7 @@ class WaveClipper extends CustomClipper<Path> {
     path.lineTo(0, size.height - 40);
     var firstControlPoint = Offset(size.width / 4, size.height);
     var firstEndPoint = Offset(size.width/ 2.25, size.height - 30);
-    path.quadraticBezierTo(firstControlPoint.dx, firsControlPoint.dy, firstEndPoint.dx, firsEndPoint.dy);
+    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy, firstEndPoint.dx, firstEndPoint.dy);
     var secondControlPoint = Offset(size.width - (size.width / 3.25), size.height - 65);
     var secondEndPoint = Offset(size.width, size.height - 40);
     path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy, secondEndPoint.dx, secondEndPoint.dy);
@@ -646,7 +646,7 @@ class HeaderClipper extends CustomClipper<Path> {
   Path getClip(Size size) {
     var path = Path();
     path.lineTo(0, size.height -80);
-    path.lineTo(size.width / 2, size.height, size.width, size.height - 80);
+    path.quadraticBezierTo(size.width / 2, size.height, size.width, size.height - 80);
     path.lineTo(size.width, 0);
     path.close();
     return path;
@@ -668,7 +668,7 @@ class BottomWaveClipper extends CustomClipper<Path> {
     return path;
   }
   @override
-  bool ahouldReclip(CustomClipper<Path> oldClipper) => false;
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
   
 
