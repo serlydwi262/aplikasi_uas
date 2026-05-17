@@ -388,14 +388,14 @@ class _WordGamePageState extends State<WordGamePage> {
       {"word": "BROKOLI", "hint": "Bentuknya seperti pohon kecil hijau", "icon": "🥦"},
       {"word": "TERONG", "hint": "Panjang dan berwarna ungu", "icon": "🍆"},
       {"word": "JAGUNG", "hint": "Biji kuninhg, enak dibakar", "icon": "🌽"},
-      {"word": "Jamur", "hint": "Tumbuh di tempat lembab", "icon": "🍄"},
+      {"word": "JAMUR", "hint": "Tumbuh di tempat lembab", "icon": "🍄"},
     ],
     "IKAN": [
       {"word": "PAUS", "hint": "Ikan paling besar di laut", "icon": "🐋"},
       {"word": "CUMI", "hint": "Punya tinta hitam", "icon": "🦑"},
       {"word": "UDANG", "hint": "Badannya bungkuk, enak dimakan", "icon": "🦐"},
       {"word": "KEPITING", "hint": "Jalannya miring, punya capit", "icon": "🦀"},
-      {"word": "Kerang", "hint": "Punya rumah cangkang yang keras", "icon": "🐚"},
+      {"word": "KERANG", "hint": "Punya rumah cangkang yang keras", "icon": "🐚"},
     ],
     "PROFESI": [
       {"word": "GURU", "hint": "Orang yang mengajar di sekolah", "icon": "🧑‍🏫"},
@@ -416,7 +416,7 @@ class _WordGamePageState extends State<WordGamePage> {
       {"word": "JERAPAH", "hint": "Lehernya sangat panjang", "icon": "🦒"},
       {"word": "KELINCI", "hint": "Suka makan worter dan melompat", "icon": "🐰"},
       {"word": "MONYET", "hint": "Suka makan pisang dan memanjat pohon", "icon": "🐒"},
-      {"word": "AYAM", "hint": "Membangunkan orang di pagi hari", "icon": "🚌"},
+      {"word": "AYAM", "hint": "Membangunkan orang di pagi hari", "icon": "🐔"},
     ],
     "KENDARAAN": [
       {"word": "ROKET", "hint": "Pergi keluar angkasa", "icon": "🚀"},
@@ -498,7 +498,7 @@ class _WordGamePageState extends State<WordGamePage> {
                 
                 Navigator.pop(context);
               },
-              child: const Text("KEMBALI KE PILIH KATEGORI"),
+              child: const Text("KEMBALI KE MENU 🏠"),
             ),
           )
         ],
