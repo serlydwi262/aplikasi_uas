@@ -37,27 +37,27 @@ Aplikasi ini menyusun tema **Nature Green** yang elegan dan bersih. Berikut adal
 1. **Main Menu:**
     Background gradasi hijau (`#4CAF50` KE `#8BC34A`) dengan efek gelombang putih atas. terdapat icon bintang melayang dan tombol PLAY dengan efek animasi detak jantung.
     <br>
-    <img src="screenshots/tampilan_utama.jpeg" widht="300" alt="Main Menu"/>
+    <img src="screenshots/tampilan_utama.jpeg" widht="100" alt="Main Menu"/>
 
 2. **Category Selection:**
     Menampilkan pilihan 8 kategori edukatif dengan warna-warna pastel (Orange, Hijau, Biru, Ungu) yang memiliki efek melayang (*floating animation*).
     <br>
-    <img src="screenshots/tampilan_dua.jpeg" widht="300" alt="Category Selection"/>
+    <img src="screenshots/tampilan_dua.jpeg" widht="100" alt="Category Selection"/>
 
 3. **Gameplay Screen:** 
     Header hijau melengkung, kartu soal putih dengan bayangan halus, petunjuk teks huruf yang diacak, dan kolom input yang responsif.
     <br>
-    <img src="screenshots/tampilan_ketiga.png" widht="300" alt="Gameplay Screen"/>
+    <img src="screenshots/tampilan_ketiga.png" widht="100" alt="Gameplay Screen"/>
 
 4. **Celebration:**
     Efek balon warna-warni yang terbang dari bawah ke atas serta muncul notifikasi **"BENAR SEKALI!"** sesaat setelah pengguna berhasil menebak kata.
     <br>
-    <img src="screenshots/tampilan_balon.png" widht="300" alt="Celebration"/>
+    <img src="screenshots/tampilan_balon.png" widht="100" alt="Celebration"/>
 
 5. **Game Over Dialog (Skor Akhir)**
     Dialog ringkasan skor akhir yang muncul setelah menyelesaikan semua soal di dalam suatu kategori, dilengkapi dengan tombol navigasi untuk kembali.
     <br>
-    <img src="screenshots/tampilan_skor_akhir.png" widht="300" alt="Skor Akhir"/>
+    <img src="screenshots/tampilan_skor_akhir.png" widht="100" alt="Skor Akhir"/>
 ---
 
 # 🏠 Fitur Utama
