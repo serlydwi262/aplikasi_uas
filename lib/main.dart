@@ -259,7 +259,7 @@ class _CategoryPageState extends State<CategoryPage> with SingleTickerProviderSt
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Mau Tebak Gambar Apa Hari Ini?",
+                        "Mau Tebak Kata Apa Hari Ini?",
                         style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
