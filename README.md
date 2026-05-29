@@ -88,7 +88,7 @@ Aplikasi ini menyusun tema **Nature Green** yang elegan dan bersih. Berikut adal
 2. Pengguna memilih salah satu dari **8 kategori** yang tersedia.
 3. Gambar emoji dan huruf yang teracak akan muncul beserta petunjuk teks.
 4. Pengguna menggentik jawaban pada kolom **KETIK DISINI...**
-5. Jika benar, balon akan muncul dan soal otomatis berpindah. Jika salah, teks merah akan muncul.
+5. Jika benar, balon akan muncul dan soal otomatis berpindah. 
 6. Di akhir sesi, dialog **Skor Akhir** akan ditampilkan.
 
 
