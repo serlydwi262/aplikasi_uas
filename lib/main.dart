@@ -430,7 +430,7 @@ class _WordGamePageState extends State<WordGamePage> {
       {"word": "BIRU", "hint": "Warna langit yang cerah dan warna laut yang luas", "icon": "🔵"},
       {"word": "HIJAU", "hint": "Warna daun pohon dan rumput di taman", "icon": "🟢"},
       {"word": "HITAM", "hint": "Warna malam hari tanpa lampu atau warna arang", "icon": "⚫"},
-      {"word": "COKELAT", "hint": "Warna kayu pohon dan manisnya cokelat batang", "icon": "🟤"},
+      {"word": "COKLAT", "hint": "Warna kayu pohon dan manisnya cokelat batang", "icon": "🟤"},
     ],
   };
 
