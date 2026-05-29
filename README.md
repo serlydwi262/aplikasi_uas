@@ -5,7 +5,7 @@
 *FlashQuest adalah aplikasi mobile edukatif berbasis flutter yang dirancang untuk membantu proses belajar melalui metode tebak kata bergambar yang interaktif dan menyenangkan dengan kategori yang beragam.*
 
 # Konsep Visual & UI/UX (100% Match)
-1. Warna Utama: Hijau (Colors.green / #4CAF50) melambangkan kesegaran dan pembelajaran.
+1. Warna Utama: Hijau (Colors.green / #4CAF50) melambangkan kesegaran dalam pembelajaran dan bermain.
 2. Akses Warna: Putih Gading (#F1F8E9) untuk latar belakang agar mata tidak lelah.
 3. Elemen Desain: 
    - Pengguna Wave Clipper (gelombang) pada menu utama dan header permainan untuk kesan dinamis.
@@ -13,7 +13,7 @@
 4. Sistem Paraticle/Balloons saat jawaban benar untuk meningkatkan user enggagement.
 5. Tipografi: Bold Sans-Serif dengan letter spacing untuk judul agar terlihat modern.
 
-# FITUR UTAMA
+# Fitur Utama
 1. Menu Utama Dinamis: Animasi logo melayang dan tombol **PLAY** yang berdenyut (scaling).
 2. Multi-Kategori: 8 Kategori pembelajaran (Buah, Sayur, Ikan, Profesi, Benda, Hewan, Kendaraan, dan warna)
 3. Sistem Gameplay:
@@ -36,16 +36,28 @@ Aplikasi ini menyusun tema **Nature Green** yang elegan dan bersih. Berikut adal
 
 1. **Main Menu:**
     Background gradasi hijau (`#4CAF50` KE `#8BC34A`) dengan efek gelombang putih atas. terdapat icon bintang melayang dan tombol PLAY dengan efek animasi detak jantung.
+    <br>
+    <img src="screenshots/tampilan_utama.jpeg" widht="300" alt="Main Menu"/>
 
 2. **Category Selection:**
-    warna-warna pastel (Orange, Hijau, Biru, Ungu) yang memiliki efek melayang (floating animation).
+    Menampilkan pilihan 8 kategori edukatif dengan warna-warna pastel (Orange, Hijau, Biru, Ungu) yang memiliki efek melayang (*floating animation*).
+    <br>
+    <img src="screenshots/tampilan_dua.jpeg" widht="300" alt="Category Selection"/>
 
 3. **Gameplay Screen:** 
-    Header hijau melengkung, kartu soal putih dengan bayangan halus, dan keyboard input yang responsif.
+    Header hijau melengkung, kartu soal putih dengan bayangan halus, petunjuk teks huruf yang diacak, dan kolom input yang responsif.
+    <br>
+    <img src="screenshots/tampilan_ketiga.png" widht="300" alt="Gameplay Screen"/>
 
 4. **Celebration:**
-    Efek balon warna-warni yang terbang dari bawah ke atas saat jawaban benar.
+    Efek balon warna-warni yang terbang dari bawah ke atas serta muncul notifikasi **"BENAR SEKALI!"** sesaat setelah pengguna berhasil menebak kata.
+    <br>
+    <img src="screenshots/tampilan_balon.png" widht="300" alt="Celebration"/>
 
+5. **Game Over Dialog (Skor Akhir)**
+    Dialog ringkasan skor akhir yang muncul setelah menyelesaikan semua soal di dalam suatu kategori, dilengkapi dengan tombol navigasi untuk kembali.
+    <br>
+    <img src="screenshots/tampilan_skor_akhir.png" widht="300" alt="Skor Akhir"/>
 ---
 
 # 🏠 Fitur Utama
@@ -90,6 +102,13 @@ Aplikasi ini menyusun tema **Nature Green** yang elegan dan bersih. Berikut adal
 4. Pengguna menggentik jawaban pada kolom **KETIK DISINI...**
 5. Jika benar, balon akan muncul dan soal otomatis berpindah. 
 6. Di akhir sesi, dialog **Skor Akhir** akan ditampilkan.
+
+# Intruksi Penyimpanan Proyek Ke GIT (Commit)
+Sesuai instruksi untuk melakukan pembaruan berkala dan dilarang melakukan satu kali push langsung selesai di akhir, aba-aba perintah terminal berikut digunakan setiap  kali selesai mencicil fitur:
+* 'git ststus' (Melihat file yang diubah)
+* 'git add .' (Menambah perubahan ke staging area)
+* 'git commit -m "feat: deskripsi progres fitur"' (Memberikan catatan commit)
+* 'git push origin main' (Mengirim berkas ke GitHub)
 
 
 © 2026 Serly Dwi Rahayu - Teknik Informatika

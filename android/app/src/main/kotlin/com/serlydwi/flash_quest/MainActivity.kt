@@ -1,4 +1,4 @@
-package com.example.flash_ques
+package com.serlydwi.flash_quest
 
 import io.flutter.embedding.android.FlutterActivity
 
